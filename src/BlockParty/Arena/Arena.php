@@ -697,6 +697,9 @@ class Arena implements Listener
         ->getId())
        {
       case Item::BED:
+        unset($this->ingamep[strtolower($e->getPlayer()->getName()) ]);
+		      unset($this->lobbyp[strtolower($e->getPlayer()->getName()) ]);
+		      unset($this->spec[strtolower($e->getPlayer()->getName()) ]);
         $this->leaveArena($e->getPlayer());
         $e->getPlayer()->getInventory()
           ->clearAll();
