@@ -258,7 +258,6 @@ class Arena implements Listener
       ->getPrefix() . $this
       ->plugin
       ->getMsg('leave'));
-    $this->loadInv($p);
     $p->removeAllEffects();
    }
 
@@ -427,7 +426,6 @@ class Arena implements Listener
     foreach ($this->ingamep as $p)
      {
       $p->removeAllEffects();
-      $this->loadInv($p);
       unset($this->ingamep[strtolower($p->getName()) ]);
       $p->teleport($this
         ->plugin
@@ -439,7 +437,6 @@ class Arena implements Listener
     foreach ($this->lobbyp as $p)
      {
       $p->removeAllEffects();
-      $this->loadInv($p);
       unset($this->lobbyp[strtolower($p->getName()) ]);
       $p->teleport($this
         ->plugin
@@ -451,7 +448,6 @@ class Arena implements Listener
     foreach ($this->spec as $p)
      {
       $p->removeAllEffects();
-      $this->loadInv($p);
       unset($this->spec[strtolower($p->getName()) ]);
       $p->teleport($this
         ->plugin
@@ -474,28 +470,6 @@ class Arena implements Listener
       ->inv[strtolower($p->getName()) ]       = $items;
     $p->getInventory()
       ->clearAll();
-   }
-
-  public function loadInv(Player $p)
-   {
-    if (!$p->isOnline())
-     {
-      return;
-     }
-    $p->getInventory()
-      ->clearAll();
-    foreach ($this
-      ->plugin
-      ->inv[strtolower($p->getName()) ] as $slot => $i)
-     {
-      list($id, $dmg, $count)       = explode(":", $i);
-      $item = Item::get($id, $dmg, $count);
-      $p->getInventory()
-        ->setItem($slot, $item);
-      unset($this
-        ->plugin
-        ->inv[strtolower($p->getName()) ]);
-     }
    }
 
   public function onRespawn(PlayerRespawnEvent $e)
