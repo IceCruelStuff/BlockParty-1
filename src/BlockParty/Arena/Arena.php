@@ -233,6 +233,8 @@ class Arena implements Listener
         ->getServer()
         ->getDefaultLevel()
         ->getSpawnLocation());
+      $p->getInventory()
+        ->clearAll(); // Fix Bug Item //
      }
     if ($this->getPlayerMode($p) == 1)
      {
