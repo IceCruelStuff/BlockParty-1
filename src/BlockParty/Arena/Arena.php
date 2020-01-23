@@ -713,6 +713,12 @@ class Arena implements Listener
        {
       case Item::BED:
         $this->leaveArena($e->getPlayer());
+        $e->getPlayer()->getInventory()
+          ->clearAll();
+        $e->getPlayer()->getArmorInventory()
+          ->clearAll();
+        $e->getPlayer()->getCursorInventory()
+          ->clearAll();
       break;
        }
      }
