@@ -577,21 +577,6 @@ class Arena implements Listener
     $msg     = str_replace($vars, $replace, $this
       ->plugin
       ->getMsg('end_game'));
-    $levels  = explode(",", $this->data['arena']['finish_msg_levels']);
-    foreach ($levels as $level)
-     {
-      $lvl     = $this
-        ->plugin
-        ->getServer()
-        ->getLevelByName($level);
-      if ($lvl instanceof Level)
-       {
-        foreach ($lvl->getPlayers() as $p)
-         {
-          $p->sendMessage($msg);
-         }
-       }
-     }
    }
 
   public function setColor($color)
